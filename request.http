@@ -1,0 +1,30 @@
+###
+POST http://localhost:9000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+"name":"camilo ortiz",
+"usuario":"cortiz",
+"contrasena":"cortiz",
+"email":"cortiz@gmail.com"
+}
+
+###
+GET http://localhost:9000/api/users HTTP/1.1
+
+###
+GET http://localhost:9000/api/users/638554e13ad2f7044077baf6 HTTP/1.1
+
+###
+PUT http://localhost:9000/api/users/638554e13ad2f7044077baf6 HTTP/1.1
+Content-Type: application/json
+
+{
+"name":"camilo DAZA ortiz",
+"usuario":"cortizDAZA",
+"contrasena":"cortiz",
+"email":"cortizDAZA@gmail.com"
+}
+
+###
+DELETE  http://localhost:9000/api/users/638554e13ad2f7044077baf6
