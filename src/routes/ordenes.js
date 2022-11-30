@@ -1,56 +1,56 @@
 const express = require('express');
-const userSchema = require('../models/user');
+const orderSchema = require('../models/registroordenes');
 
 const router = express.Router();
 
-// Registrar o crear usuarios
-router.post('/users', (req, res) => {
-  const user = userSchema(req.body);
+// Registrar o crear ordenes
+router.post('/ordenes', (req, res) => {
+  const user = orderSchema(req.body);
   user
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-// obtener todos los usuario
-router.get('/users', (req, res) => {
-  userSchema
+// obtener todas las ordenes
+router.get('/ordenes', (req, res) => {
+  orderSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-// obtener un usuario especifico
+// obtener una orden especifica
 
-router.get('/users/:id', (req, res) => {
+router.get('/ordenes/:id', (req, res) => {
   const { id } = req.params;
-  userSchema
+  orderSchema
     .findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
   console.log(res);
 });
 
-// actualizar usuario
-router.put('/users/:id', (req, res) => {
+// actualizar orden
+router.put('/ordenes/:id', (req, res) => {
   const { id } = req.params;
   const {
-    nombre, usuario, contrasena, email, direccion_recogida, ciudad_recogida, cedula
+    nombre_destinatario, cedula_destinatario, direccion_entrega, ciudad_entrega, dimensiones, delicado, peso
   } = req.body;
-  userSchema
+  orderSchema
     .updateOne({ _id: id }, {
       $set: {
-        nombre, usuario, contrasena, email, direccion_recogida, ciudad_recogida, cedula
+        nombre_destinatario, cedula_destinatario, direccion_entrega, ciudad_entrega, dimensiones, delicado, peso
       },
     })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-// eliminar ususario
-router.delete('/users/:id', (req, res) => {
+// eliminar orden
+router.delete('/ordenes/:id', (req, res) => {
   const { id } = req.params;
-  userSchema
+  orderSchema
     .remove({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
